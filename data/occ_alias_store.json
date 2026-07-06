@@ -1,0 +1,72 @@
+{
+  "land pride open lot butler building": {
+    "code": 312,
+    "raw": "Land Pride - Open Lot & Butler Building",
+    "uses": 1
+  },
+  "busboom building": {
+    "code": 315,
+    "raw": "Busboom building",
+    "uses": 1
+  },
+  "signify building": {
+    "code": 315,
+    "raw": "Signify building",
+    "uses": 1
+  },
+  "fire suppression building": {
+    "code": 315,
+    "raw": "Fire Suppression Building",
+    "uses": 1
+  },
+  "rice mill": {
+    "code": 315,
+    "raw": "Rice Mill",
+    "uses": 1
+  },
+  "land pride parts leased from casad": {
+    "code": 373,
+    "raw": "Land Pride Parts - Leased from CASAD",
+    "uses": 1
+  },
+  "engineering prototype design leased from qa applequist trust": {
+    "code": 373,
+    "raw": "Engineering & Prototype Design - Leased from QA Applequist Trust",
+    "uses": 1
+  },
+  "leases 2nd 3rd floor from qa applequist": {
+    "code": 373,
+    "raw": "Leases 2nd & 3rd Floor from QA Applequist",
+    "uses": 1
+  },
+  "wash building": {
+    "code": 343,
+    "raw": "Wash Building",
+    "uses": 1
+  },
+  "south building": {
+    "code": 343,
+    "raw": "South Building",
+    "uses": 1
+  },
+  "dwelling don betts": {
+    "code": 302,
+    "raw": "Dwelling - Don Betts",
+    "uses": 1
+  },
+  "tillage manufacturing line": {
+    "code": 323,
+    "raw": "Tillage Manufacturing Line",
+    "uses": 1
+  },
+  "rd utility vehicles": {
+    "code": 327,
+    "raw": "R&D Utility Vehicles",
+    "uses": 1
+  },
+  "tipton tillage engineering rd space": {
+    "code": 346,
+    "raw": "Tipton Tillage Engineering & R&D Space",
+    "uses": 1
+  }
+}

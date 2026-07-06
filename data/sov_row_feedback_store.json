@@ -1,0 +1,18 @@
+{
+  "Street": [
+    {
+      "rule_id": "c6f5eda9",
+      "output_col": "Street",
+      "source_col": "Street",
+      "prompt": "Remove any text enclosed in parentheses, including the opening and closing brackets and all content inside them. Trim any extra spaces left after removal.",
+      "lambda_src": "lambda v: re.sub(r'\\s*\\([^)]*\\)', '', v).strip()",
+      "explanation": "Removes any text within parentheses, including the parentheses themselves, and trims extra spaces.",
+      "reason": "",
+      "reviewer": "analyst",
+      "uses": 1,
+      "confirmed": true,
+      "created": "2026-06-19T08:17:20.374300+00:00",
+      "last_applied": "2026-07-06T04:56:29.367886+00:00"
+    }
+  ]
+}
