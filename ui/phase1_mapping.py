@@ -12,9 +12,9 @@ import traceback
 import tempfile
 import io
 
-from sov_app.header_mapping.ai_refine import refine_mappings_with_ai
-from sov_app.header_mapping.pipeline import run_header_mapping
-from sov_app.ui.common import _human_basis, _is_auto_populated, _match_type_display, conf_bar, method_badge, safe_join, to_excel_bytes
+from header_mapping.ai_refine import refine_mappings_with_ai
+from header_mapping.pipeline import run_header_mapping
+from ui.common import _human_basis, _is_auto_populated, _match_type_display, conf_bar, method_badge, safe_join, to_excel_bytes
 
 def build_mapped_excel(result) -> bytes:
     df_raw   = result["data_frame"]

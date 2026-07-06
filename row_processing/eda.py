@@ -6,7 +6,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from sov_app.header_mapping.schema import TARGET_SCHEMA_AIR, TARGET_SCHEMA_RMS
+from header_mapping.schema import TARGET_SCHEMA_AIR, TARGET_SCHEMA_RMS
 
 def run_eda(df_raw: pd.DataFrame, locked_schema, target_system: str = "AIR") -> dict:
     schema     = TARGET_SCHEMA_AIR if target_system.upper() == "AIR" else TARGET_SCHEMA_RMS

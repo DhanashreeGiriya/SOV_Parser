@@ -159,13 +159,13 @@ section.main > div.block-container {
 </style>
 """, unsafe_allow_html=True)
 
-from sov_app.ui.accuracy_tab import render_accuracy_tab
-from sov_app.ui.common import load_pipeline, render_sidebar
-from sov_app.ui.feedback_tab import render_feedback_tab
-from sov_app.ui.phase1_mapping import render_phase1
-from sov_app.ui.phase2_review import render_phase2
-from sov_app.ui.phase3_transform import render_phase3
-from sov_app.ui.row_feedback_tab import render_row_feedback_tab
+from ui.accuracy_tab import render_accuracy_tab
+from ui.common import load_pipeline, render_sidebar
+from ui.feedback_tab import render_feedback_tab
+from ui.phase1_mapping import render_phase1
+from ui.phase2_review import render_phase2
+from ui.phase3_transform import render_phase3
+from ui.row_feedback_tab import render_row_feedback_tab
 
 def main():
     system, auto_threshold, _ = render_sidebar()

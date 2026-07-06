@@ -3,15 +3,15 @@ Auto-extracted module: row_processing/construction.py
 """
 
 from __future__ import annotations
-from sov_app.header_mapping.excel_io import _normalise
+from header_mapping.excel_io import _normalise
 
 from fuzzywuzzy import fuzz  # type: ignore
 import re
 import json
 
-from sov_app.header_mapping.ai_refine import _call_azure_openai
-from sov_app.header_mapping.rms_crosswalk import AIR_TO_RMS_CONSTRUCTION, ISO_TO_AIR_CONSTRUCTION
-from sov_app.row_processing.helpers import _clean_str, _to_int
+from header_mapping.ai_refine import _call_azure_openai
+from header_mapping.rms_crosswalk import AIR_TO_RMS_CONSTRUCTION, ISO_TO_AIR_CONSTRUCTION
+from row_processing.helpers import _clean_str, _to_int
 
 _CONSTRUCTION_KEYWORDS: list = [
     (re.compile(r"\bwood\b|\bframe\b|\btimber frame\b", re.I), 101),
@@ -164,7 +164,7 @@ def resolve_construction_code(iso_code_raw, description_raw, num_stories):
 
 def _save_construction_rule(raw_description: str, confirmed_code: int) -> None:
     try:
-        from sov_app.feedback.construction_aliases import save_const_rule
+        from feedback.construction_aliases import save_const_rule
         save_const_rule(raw_description, confirmed_code)
     except Exception:
         pass

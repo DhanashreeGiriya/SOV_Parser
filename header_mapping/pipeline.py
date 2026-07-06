@@ -7,12 +7,12 @@ from __future__ import annotations
 import pandas as pd
 from pathlib import Path
 
-from sov_app.header_mapping.ai_refine import refine_mappings_with_ai
-from sov_app.header_mapping.excel_io import _normalise, auto_detect_best_sheet, load_sov
-from sov_app.header_mapping.matching import flag_unmapped_raw_columns, map_headers
-from sov_app.header_mapping.reporting import export_mapping_report
-from sov_app.header_mapping.schema import AI_REVIEW_THRESHOLD
-from sov_app.header_mapping.scoring import apply_scoring, generate_mapping_flags
+from header_mapping.ai_refine import refine_mappings_with_ai
+from header_mapping.excel_io import _normalise, auto_detect_best_sheet, load_sov
+from header_mapping.matching import flag_unmapped_raw_columns, map_headers
+from header_mapping.reporting import export_mapping_report
+from header_mapping.schema import AI_REVIEW_THRESHOLD
+from header_mapping.scoring import apply_scoring, generate_mapping_flags
 
 def run_header_mapping(
     sov_file,
@@ -51,7 +51,7 @@ def run_header_mapping(
     # ── Load human-feedback aliases (Pass 0) ─────────────────────────────────
     _progress("Pass 0: Loading human feedback rules...")
     try:
-        from sov_app.feedback.header_feedback import load_feedback_aliases
+        from feedback.header_feedback import load_feedback_aliases
         feedback_aliases = load_feedback_aliases(template_name=template_name)
         n_fb = len(feedback_aliases)
         if n_fb:

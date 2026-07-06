@@ -1,5 +1,5 @@
 """
-sov_app.ui
+ui
 ===========
 Streamlit rendering layer, one module per tab/phase of the app.
 

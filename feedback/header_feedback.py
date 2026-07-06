@@ -12,9 +12,9 @@ from pathlib import Path
 from typing import Optional
 from datetime import datetime, timezone
 
-from sov_app.header_mapping.matching import map_headers
-from sov_app.header_mapping.models import ColumnMapping
-from sov_app.header_mapping.schema import AI_REVIEW_THRESHOLD
+from header_mapping.matching import map_headers
+from header_mapping.models import ColumnMapping
+from header_mapping.schema import AI_REVIEW_THRESHOLD
 
 _DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 FEEDBACK_FILE = Path(os.environ.get("SOV_FEEDBACK_PATH", str(_DATA_DIR / "sov_feedback_store.json")))

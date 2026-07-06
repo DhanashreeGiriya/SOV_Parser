@@ -48,7 +48,7 @@ def safe_join(values, sep=", "):
 
 def load_pipeline():
     try:
-        import sov_app.pipeline as sov
+        import pipeline as sov
         return sov, None
     except Exception as e:
         return None, str(e)

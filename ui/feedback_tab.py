@@ -6,8 +6,8 @@ from __future__ import annotations
 
 import streamlit as st
 
-from sov_app.feedback.header_feedback import clear_feedback, delete_feedback_rule, get_feedback_summary, save_feedback
-from sov_app.header_mapping.schema import TARGET_SCHEMA_AIR
+from feedback.header_feedback import clear_feedback, delete_feedback_rule, get_feedback_summary, save_feedback
+from header_mapping.schema import TARGET_SCHEMA_AIR
 
 def render_feedback_tab():
     """
@@ -24,7 +24,7 @@ def render_feedback_tab():
         unsafe_allow_html=True)
 
     try:
-        import sov_app.feedback.header_feedback as _fb
+        import feedback.header_feedback as _fb
     except ImportError:
         st.error("`sov_feedback.py` not found — place it in the same directory as this app.",
                  icon="🚫")

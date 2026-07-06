@@ -3,17 +3,17 @@ Auto-extracted module: header_mapping/matching.py
 """
 
 from __future__ import annotations
-from sov_app.header_mapping.excel_io import _normalise
+from header_mapping.excel_io import _normalise
 
 import pandas as pd
 from fuzzywuzzy import fuzz  # type: ignore
 import re
 
-from sov_app.header_mapping.ai_refine import refine_mappings_with_ai
-from sov_app.header_mapping.aliases import ALIAS_MAP
-from sov_app.header_mapping.models import ColumnMapping
-from sov_app.header_mapping.patterns import _COUNTRY_NAMES, _RE_CITY, _RE_COORD, _RE_COUNTY, _RE_CURRENCY, _RE_ISO2, _RE_LARGE_NUM, _RE_STORIES, _RE_STREET_NUM, _RE_STREET_WORD, _RE_YEAR, _RE_ZIP5, _RE_ZIP_PARTIAL, _US_STATES, _sample_values, _value_pattern_score
-from sov_app.header_mapping.schema import TARGET_SCHEMA_AIR, TARGET_SCHEMA_RMS
+from header_mapping.ai_refine import refine_mappings_with_ai
+from header_mapping.aliases import ALIAS_MAP
+from header_mapping.models import ColumnMapping
+from header_mapping.patterns import _COUNTRY_NAMES, _RE_CITY, _RE_COORD, _RE_COUNTY, _RE_CURRENCY, _RE_ISO2, _RE_LARGE_NUM, _RE_STORIES, _RE_STREET_NUM, _RE_STREET_WORD, _RE_YEAR, _RE_ZIP5, _RE_ZIP_PARTIAL, _US_STATES, _sample_values, _value_pattern_score
+from header_mapping.schema import TARGET_SCHEMA_AIR, TARGET_SCHEMA_RMS
 
 def _compute_alias_confidence(norm_header: str, alias_norm: str, exact: bool) -> int:
     if exact:

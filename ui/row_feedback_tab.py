@@ -7,14 +7,14 @@ from __future__ import annotations
 import pandas as pd
 import streamlit as st
 
-from sov_app.feedback.row_feedback.apply import build_full_preview
-from sov_app.feedback.row_feedback.llm_discovery import call_llm_for_rule_discovery
-from sov_app.feedback.row_feedback.llm_transform import call_llm_for_transform
-from sov_app.feedback.row_feedback.store import clear_rules, delete_rule, get_rules_summary, load_rules, reorder_rules, save_rule
-from sov_app.feedback.row_feedback.transform_lambda import _build_preview
-from sov_app.header_mapping.ai_config import _get_azure_cfg_from_secrets
-from sov_app.row_processing.export import run_value_transformation
-from sov_app.row_processing.process_row import process_row
+from feedback.row_feedback.apply import build_full_preview
+from feedback.row_feedback.llm_discovery import call_llm_for_rule_discovery
+from feedback.row_feedback.llm_transform import call_llm_for_transform
+from feedback.row_feedback.store import clear_rules, delete_rule, get_rules_summary, load_rules, reorder_rules, save_rule
+from feedback.row_feedback.transform_lambda import _build_preview
+from header_mapping.ai_config import _get_azure_cfg_from_secrets
+from row_processing.export import run_value_transformation
+from row_processing.process_row import process_row
 
 def render_row_edit_panel(p3, system):
     """
@@ -26,7 +26,7 @@ def render_row_edit_panel(p3, system):
     4. Accepted rules are stored in sov_row_feedback_store.json and
        auto-applied on every future upload.
     """
-    import sov_app.feedback.row_feedback as _rf
+    import feedback.row_feedback as _rf
 
     cleaned_df = p3["cleaned_df"]
     raw_df     = st.session_state["phase1_result"]["data_frame"]
@@ -361,7 +361,7 @@ def render_row_feedback_tab():
       B) AI Rule Discovery — upload correct source→target examples, LLM infers lambdas
     """
     try:
-        import sov_app.feedback.row_feedback as _rf
+        import feedback.row_feedback as _rf
     except ImportError:
         st.error("`sov_row_feedback.py` not found.", icon="🚫")
         return

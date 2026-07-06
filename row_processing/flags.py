@@ -8,7 +8,7 @@ import pandas as pd
 import re
 from dataclasses import dataclass, field, asdict
 
-from sov_app.row_processing.helpers import _to_float
+from row_processing.helpers import _to_float
 
 @dataclass
 class CellFlag:

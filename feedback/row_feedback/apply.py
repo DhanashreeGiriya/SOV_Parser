@@ -8,12 +8,12 @@ import pandas as pd
 from typing import Optional
 from datetime import datetime, timezone
 
-from sov_app.feedback.row_feedback.store import PRE_CODE_RULE_COLUMNS, _load, _save
-from sov_app.feedback.row_feedback.transform_lambda import _safe_apply
-from sov_app.header_mapping.models import LockedSchema
-from sov_app.row_processing.export import run_value_transformation
-from sov_app.row_processing.flags import FlagLog
-from sov_app.row_processing.process_row import process_row
+from feedback.row_feedback.store import PRE_CODE_RULE_COLUMNS, _load, _save
+from feedback.row_feedback.transform_lambda import _safe_apply
+from header_mapping.models import LockedSchema
+from row_processing.export import run_value_transformation
+from row_processing.flags import FlagLog
+from row_processing.process_row import process_row
 
 def apply_rules(
     cleaned_df: pd.DataFrame,

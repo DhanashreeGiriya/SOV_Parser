@@ -108,7 +108,7 @@ sov_app/
    `from sov_row_feedback import apply_rules` inside `try/except`
    blocks so the app degrades gracefully if that file was missing —
    those blocks are untouched, just repointed at the new module paths
-   (`sov_app.feedback.row_feedback`).
+   (`feedback.row_feedback`).
 
 5. **Data files moved into `sov_app/data/`.** Each store's path is
    still overridable via the same environment variables as before

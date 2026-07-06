@@ -12,14 +12,14 @@ import traceback
 import tempfile
 import io
 
-from sov_app.feedback.row_feedback.store import save_rule
-from sov_app.header_mapping.rms_crosswalk import AIR_TO_RMS_CONSTRUCTION, AIR_TO_RMS_OCCUPANCY
-from sov_app.row_processing.construction import _save_construction_rule
-from sov_app.row_processing.eda import run_eda
-from sov_app.row_processing.export import run_value_transformation
-from sov_app.row_processing.occupancy import _save_occupancy_rule, looks_like_occupancy_text
-from sov_app.ui.common import _human_basis, _match_type_display, safe_join
-from sov_app.ui.row_feedback_tab import render_row_edit_panel
+from feedback.row_feedback.store import save_rule
+from header_mapping.rms_crosswalk import AIR_TO_RMS_CONSTRUCTION, AIR_TO_RMS_OCCUPANCY
+from row_processing.construction import _save_construction_rule
+from row_processing.eda import run_eda
+from row_processing.export import run_value_transformation
+from row_processing.occupancy import _save_occupancy_rule, looks_like_occupancy_text
+from ui.common import _human_basis, _match_type_display, safe_join
+from ui.row_feedback_tab import render_row_edit_panel
 
 def build_enhanced_qa_bytes(p3, locked_schema, mappings, raw_df: pd.DataFrame) -> bytes:
     """
@@ -600,7 +600,7 @@ def render_code_review_panel(p3, sov, *, field_prefix, code_field, code_map,
                             if field_prefix == "_occ":
                                 _has_signal = sov.looks_like_occupancy_text(raw_desc)
                             elif field_prefix == "_constr":
-                                from sov_app.feedback.construction_aliases import _looks_like_construction_text
+                                from feedback.construction_aliases import _looks_like_construction_text
                                 _has_signal = _looks_like_construction_text(raw_desc)
                         except Exception:
                             _has_signal = True  # fail open, don't block the UI

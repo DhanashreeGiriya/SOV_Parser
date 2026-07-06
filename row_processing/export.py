@@ -8,9 +8,9 @@ import pandas as pd
 import openpyxl
 from pathlib import Path
 
-from sov_app.row_processing.column_order import AIR_COLUMN_ORDER, RMS_COLUMN_ORDER
-from sov_app.row_processing.flags import FlagLog, validate_cross_column_flags
-from sov_app.row_processing.process_row import process_row
+from row_processing.column_order import AIR_COLUMN_ORDER, RMS_COLUMN_ORDER
+from row_processing.flags import FlagLog, validate_cross_column_flags
+from row_processing.process_row import process_row
 
 def run_value_transformation(
     phase1_result, locked_schema, target_system="AIR", output_dir=".",
@@ -29,7 +29,7 @@ def run_value_transformation(
     # so process_row's transform_*/resolve_* logic sees the corrected value.
     pre_rule_log = []
     try:
-        from sov_app.feedback.row_feedback import apply_rules_to_raw as _apply_pre_rules
+        from feedback.row_feedback import apply_rules_to_raw as _apply_pre_rules
         df_raw, pre_rule_log = _apply_pre_rules(df_raw, locked_schema)
         if pre_rule_log:
             import logging as _log
@@ -60,7 +60,7 @@ def run_value_transformation(
     # ── Apply row-level feedback rules (post-processing, for all OTHER columns) ──
     rule_application_log = list(pre_rule_log)
     try:
-        from sov_app.feedback.row_feedback import apply_rules as _apply_row_rules
+        from feedback.row_feedback import apply_rules as _apply_row_rules
         cleaned_df, post_rule_log = _apply_row_rules(
             cleaned_df, locked_schema, df_raw
         )

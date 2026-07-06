@@ -1,5 +1,5 @@
 """
-sov_app.feedback
+feedback
 ==================
 Everything related to persisting and re-applying reviewer feedback:
 

@@ -3,15 +3,15 @@ Auto-extracted module: row_processing/occupancy.py
 """
 
 from __future__ import annotations
-from sov_app.header_mapping.excel_io import _normalise
+from header_mapping.excel_io import _normalise
 
 from fuzzywuzzy import fuzz  # type: ignore
 import re
 import json
 
-from sov_app.header_mapping.ai_refine import _call_azure_openai
-from sov_app.header_mapping.rms_crosswalk import AIR_TO_RMS_OCCUPANCY
-from sov_app.row_processing.helpers import _clean_str
+from header_mapping.ai_refine import _call_azure_openai
+from header_mapping.rms_crosswalk import AIR_TO_RMS_OCCUPANCY
+from row_processing.helpers import _clean_str
 
 _OCCUPANCY_KEYWORDS: list = [
     # Residential
@@ -257,7 +257,7 @@ def resolve_occupancy_code(description_raw, lob_raw=""):
 
     # Pass 0 — human-confirmed alias store (always wins)
     try:
-        from sov_app.feedback.occupancy_aliases import lookup_occ_rule
+        from feedback.occupancy_aliases import lookup_occ_rule
         stored = lookup_occ_rule(description_raw)
         if stored is not None:
             return stored, "occupancy_confirmed_alias"
@@ -281,7 +281,7 @@ def resolve_occupancy_code(description_raw, lob_raw=""):
 
 def _save_occupancy_rule(raw_description: str, confirmed_code: int) -> None:
     try:
-        from sov_app.feedback.occupancy_aliases import save_occ_rule
+        from feedback.occupancy_aliases import save_occ_rule
         save_occ_rule(raw_description, confirmed_code)
     except Exception:
         pass

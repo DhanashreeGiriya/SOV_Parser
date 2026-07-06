@@ -9,7 +9,7 @@ import json
 import urllib.request
 import urllib.error
 
-from sov_app.feedback.row_feedback.transform_lambda import _build_preview, _fallback_rule, _sanitise_lambda
+from feedback.row_feedback.transform_lambda import _build_preview, _fallback_rule, _sanitise_lambda
 
 _LLM_SYSTEM = """\
 You are a data transformation expert for insurance SOV (Schedule of Values) processing.

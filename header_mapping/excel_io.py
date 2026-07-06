@@ -11,8 +11,8 @@ import re
 import string
 from pathlib import Path
 
-from sov_app.header_mapping.aliases import ALIAS_MAP
-from sov_app.header_mapping.schema import TARGET_SCHEMA_AIR, TARGET_SCHEMA_RMS
+from header_mapping.aliases import ALIAS_MAP
+from header_mapping.schema import TARGET_SCHEMA_AIR, TARGET_SCHEMA_RMS
 
 def _normalise(text: str) -> str:
     text = str(text).lower()

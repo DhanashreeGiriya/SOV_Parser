@@ -4,7 +4,7 @@ Auto-extracted module: row_processing/rms_output.py
 
 from __future__ import annotations
 
-from sov_app.header_mapping.rms_crosswalk import convert_air_to_rms_construction, convert_air_to_rms_occupancy, get_rms_ind
+from header_mapping.rms_crosswalk import convert_air_to_rms_construction, convert_air_to_rms_occupancy, get_rms_ind
 
 def apply_rms_crosswalk(row_out):
     air_const = row_out.get("ConstructionCode")

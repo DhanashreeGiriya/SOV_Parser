@@ -8,7 +8,7 @@ import re
 import json
 import urllib.request
 
-from sov_app.feedback.row_feedback.transform_lambda import _build_preview, _safe_apply
+from feedback.row_feedback.transform_lambda import _build_preview, _safe_apply
 
 _DISCOVERY_SYSTEM = """\
 You are a data transformation expert for insurance SOV (Schedule of Values) processing.

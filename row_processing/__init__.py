@@ -1,5 +1,5 @@
 """
-sov_app.row_processing
+row_processing
 ========================
 Row-level cleaning / transformation / resolution logic that turns a raw
 SOV row into a cleaned AIR or RMS output row.

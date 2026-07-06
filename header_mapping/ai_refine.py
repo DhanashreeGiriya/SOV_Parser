@@ -10,9 +10,9 @@ import json
 import urllib.request
 import urllib.error
 
-from sov_app.header_mapping.ai_config import _get_azure_cfg_from_secrets
-from sov_app.header_mapping.patterns import _sample_values
-from sov_app.header_mapping.schema import AI_REVIEW_THRESHOLD, TARGET_SCHEMA_AIR, TARGET_SCHEMA_RMS
+from header_mapping.ai_config import _get_azure_cfg_from_secrets
+from header_mapping.patterns import _sample_values
+from header_mapping.schema import AI_REVIEW_THRESHOLD, TARGET_SCHEMA_AIR, TARGET_SCHEMA_RMS
 
 def _call_azure_openai(messages: list, cfg: dict, max_completion_tokens: int = 3000) -> tuple[str | None, str]:
     endpoint    = cfg.get("endpoint", "")

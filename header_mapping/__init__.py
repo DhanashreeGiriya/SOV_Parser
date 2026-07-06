@@ -1,5 +1,5 @@
 """
-sov_app.header_mapping
+header_mapping
 ========================
 Column/header mapping pipeline (Pass 0 feedback, Pass A/B/C alias &
 semantic matching, AI refinement, scoring, reporting, templates).

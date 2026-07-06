@@ -11,11 +11,11 @@ Modular replacement for the old monolithic ``sov_row_feedback.py``, split into:
 
 Everything that used to be a top-level name in ``sov_row_feedback`` is
 re-exported here so existing call sites such as
-``import sov_app.feedback.row_feedback as rf; rf.apply_rules(...)``
+``import feedback.row_feedback as rf; rf.apply_rules(...)``
 keep working unchanged.
 """
 
-from sov_app.feedback.row_feedback.store import (
+from feedback.row_feedback.store import (
     RULES_FILE,
     PRE_CODE_RULE_COLUMNS,
     save_rule,
@@ -25,16 +25,16 @@ from sov_app.feedback.row_feedback.store import (
     clear_rules,
     reorder_rules,
 )
-from sov_app.feedback.row_feedback.transform_lambda import (
+from feedback.row_feedback.transform_lambda import (
     run_lambda_on_series,
 )
-from sov_app.feedback.row_feedback.llm_transform import (
+from feedback.row_feedback.llm_transform import (
     call_llm_for_transform,
 )
-from sov_app.feedback.row_feedback.llm_discovery import (
+from feedback.row_feedback.llm_discovery import (
     call_llm_for_rule_discovery,
 )
-from sov_app.feedback.row_feedback.apply import (
+from feedback.row_feedback.apply import (
     apply_rules,
     apply_rules_to_raw,
     build_full_preview,

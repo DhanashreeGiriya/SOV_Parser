@@ -9,8 +9,8 @@ import json
 from pathlib import Path
 from dataclasses import dataclass, field, asdict
 
-from sov_app.header_mapping.rms_crosswalk import AIR_TO_RMS_CONSTRUCTION, AIR_TO_RMS_OCCUPANCY, ISO_TO_AIR_CONSTRUCTION, RMS_COUNTRY_IND
-from sov_app.header_mapping.schema import AI_REVIEW_THRESHOLD
+from header_mapping.rms_crosswalk import AIR_TO_RMS_CONSTRUCTION, AIR_TO_RMS_OCCUPANCY, ISO_TO_AIR_CONSTRUCTION, RMS_COUNTRY_IND
+from header_mapping.schema import AI_REVIEW_THRESHOLD
 
 CONFIDENCE_COLOURS = {
     "high":    "C6EFCE",

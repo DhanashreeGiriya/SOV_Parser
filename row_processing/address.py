@@ -6,7 +6,7 @@ from __future__ import annotations
 
 import re
 
-from sov_app.row_processing.helpers import _clean_str, _clean_str_local
+from row_processing.helpers import _clean_str, _clean_str_local
 
 _STREET_TYPE_RE = re.compile(
     r"\b(st|ave|blvd|rd|dr|ln|ct|pl|way|pkwy|hwy|route|loop|cir|ter|"

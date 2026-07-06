@@ -7,7 +7,7 @@ from __future__ import annotations
 import re
 from typing import Any
 
-from sov_app.row_processing.helpers import _clean_str, _to_float
+from row_processing.helpers import _clean_str, _to_float
 
 _YEAR_PATTERN = re.compile(r"\b(1[89]\d{2}|20[0-2]\d)\b")
 

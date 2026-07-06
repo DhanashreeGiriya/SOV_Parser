@@ -7,7 +7,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from sov_app.header_mapping.models import LockedSchema, MappingDecision
+from header_mapping.models import LockedSchema, MappingDecision
 
 def save_mapping_template(schema, template_dir, template_name=None):
     template_dir = Path(template_dir)

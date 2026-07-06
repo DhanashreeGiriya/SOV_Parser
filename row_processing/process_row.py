@@ -7,14 +7,14 @@ from __future__ import annotations
 import re
 from typing import Any
 
-from sov_app.header_mapping.ai_config import _get_azure_cfg_from_secrets
-from sov_app.header_mapping.rms_crosswalk import AIR_TO_RMS_CONSTRUCTION
-from sov_app.row_processing.address import _infer_country_from_address, resolve_country_iso, resolve_postal_code, transform_location_name, transform_street
-from sov_app.row_processing.construction import resolve_construction_code, resolve_construction_semantic, resolve_construction_with_ai
-from sov_app.row_processing.helpers import _clean_str, _pick_first_nonempty, _to_float, _to_int
-from sov_app.row_processing.numeric_fields import resolve_building_value, resolve_gross_area, resolve_sprinkler, resolve_stories, resolve_time_element_value, resolve_year_built
-from sov_app.row_processing.occupancy import resolve_occupancy_code, resolve_occupancy_semantic, resolve_occupancy_with_ai
-from sov_app.row_processing.rms_output import apply_rms_crosswalk
+from header_mapping.ai_config import _get_azure_cfg_from_secrets
+from header_mapping.rms_crosswalk import AIR_TO_RMS_CONSTRUCTION
+from row_processing.address import _infer_country_from_address, resolve_country_iso, resolve_postal_code, transform_location_name, transform_street
+from row_processing.construction import resolve_construction_code, resolve_construction_semantic, resolve_construction_with_ai
+from row_processing.helpers import _clean_str, _pick_first_nonempty, _to_float, _to_int
+from row_processing.numeric_fields import resolve_building_value, resolve_gross_area, resolve_sprinkler, resolve_stories, resolve_time_element_value, resolve_year_built
+from row_processing.occupancy import resolve_occupancy_code, resolve_occupancy_semantic, resolve_occupancy_with_ai
+from row_processing.rms_output import apply_rms_crosswalk
 
 def process_row(row_idx, row, schema, flag_log, target_system="AIR",
                 days_covered=365, default_country="US", lob_col=""):
@@ -160,7 +160,7 @@ def process_row(row_idx, row, schema, flag_log, target_system="AIR",
     if (air_const is None or "defaulted_100" in const_flag) and constr_source_text:
         stored_code = None
         try:
-            from sov_app.feedback.construction_aliases import lookup_const_rule
+            from feedback.construction_aliases import lookup_const_rule
             stored_code = lookup_const_rule(constr_source_text)
         except Exception:
             stored_code = None

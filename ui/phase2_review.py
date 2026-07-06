@@ -7,9 +7,9 @@ from __future__ import annotations
 import pandas as pd
 import streamlit as st
 
-from sov_app.feedback.header_feedback import save_feedback
-from sov_app.header_mapping.models import LockedSchema, MappingDecision
-from sov_app.ui.common import _human_basis, _match_type_display, safe_join, to_excel_bytes
+from feedback.header_feedback import save_feedback
+from header_mapping.models import LockedSchema, MappingDecision
+from ui.common import _human_basis, _match_type_display, safe_join, to_excel_bytes
 
 def render_phase2(sov, system, auto_threshold):
     if "phase1_result" not in st.session_state:
@@ -301,7 +301,7 @@ def render_phase2(sov, system, auto_threshold):
         st.session_state["locked_schema"] = locked
     
         try:
-            import sov_app.feedback.header_feedback as _fb
+            import feedback.header_feedback as _fb
             n_saved = _fb.save_feedback(locked, mappings)
             if n_saved:
                 st.toast(
