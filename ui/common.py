@@ -62,7 +62,7 @@ def _match_type_display(match_type: str) -> tuple[str, str, str]:
     mt = match_type.lower()
     if mt in ("reference_exact", "alias_exact"):
         return "Reference Match", "m-ref", "Matched by known insurance industry name"
-    if mt in ("reference_fuzzy", "alias_fuzzy", "semantic_match", "fuzzy"):
+    if mt in ("reference_fuzzy", "alias_fuzzy", "semantic_match", "fuzzy", "embedding_match"):
         return "Semantic Match", "m-sem", "Matched by column name similarity"
     if mt in ("ai_validated",):
         return "AI Validated", "m-ai", "Semantic match confirmed by AI using sample data"

@@ -36,11 +36,6 @@ def build_mapped_excel(result) -> bytes:
 
 
 def _categorise_mappings(mappings):
-    """
-    Categorise all 34 schema columns into buckets for display.
-    Auto-populated columns are treated as null/not from source.
-    Returns dict of lists.
-    """
     ref_match    = []  # reference/exact/template match
     sem_match    = []  # semantic/name-similarity match
     ai_validated = []  # AI confirmed
@@ -210,9 +205,9 @@ def render_phase1(sov, system):
 
 def _render_p1_results(result):
     mappings = result["mappings"]
-    flags    = result["flags"]
-    df       = result["data_frame"]
-    cats     = _categorise_mappings(mappings)
+    flags = result["flags"]
+    df = result["data_frame"]
+    cats = _categorise_mappings(mappings)
 
     total_schema   = len(mappings)
     total_sourced  = len(cats["reference"]) + len(cats["semantic"]) + len(cats["ai_validated"]) + len(cats["ai_refined"]) + len(cats["human"])
@@ -467,7 +462,7 @@ def _render_p1_results(result):
     st.markdown("---")
     d1, d2, d3 = st.columns(3)
     with d1:
-        st.download_button("↓  Mapped SOV (.xlsx)", data=build_mapped_excel(result),
+        st.download_button("↓Mapped SOV (.xlsx)", data=build_mapped_excel(result),
                             file_name="sov_mapped_air.xlsx",
                             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                             use_container_width=True)

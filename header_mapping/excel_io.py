@@ -1,16 +1,11 @@
-"""
-Auto-extracted module: header_mapping/excel_io.py
-"""
-
 from __future__ import annotations
-
 import pandas as pd
 import openpyxl
-from fuzzywuzzy import fuzz  # type: ignore
+from fuzzywuzzy import fuzz
 import re
 import string
 from pathlib import Path
-
+# import wordninja
 from header_mapping.aliases import ALIAS_MAP
 from header_mapping.schema import TARGET_SCHEMA_AIR, TARGET_SCHEMA_RMS
 
@@ -18,7 +13,7 @@ def _normalise(text: str) -> str:
     text = str(text).lower()
     text = text.translate(str.maketrans("", "", string.punctuation))
     return re.sub(r"\s+", " ", text).strip()
-
+# def normalise_word
 
 def detect_header_row(ws, max_scan_rows: int = 30, min_hit_ratio: float = 0.15) -> int:
     import math
@@ -81,7 +76,7 @@ def auto_detect_best_sheet(file_path):
                     1 for v in row_vals
                     if _normalise(v) in known_tokens
                     or any(fuzz.token_set_ratio(_normalise(v), t) >= 70 for t in known_tokens)
-                )
+                )                # check logic
                 row_score = hits / max(len(row_vals), 1)
                 if row_score > best_row_score:
                     best_row_score = row_score

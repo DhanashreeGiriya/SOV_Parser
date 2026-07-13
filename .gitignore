@@ -1,5 +1,5 @@
 # --- Python ---
-__pycache__/
+*__pycache__
 *.py[cod]
 *$py.class
 *.so
@@ -38,3 +38,10 @@ Thumbs.db
 *.egg-info/
 dist/
 build/
+
+# --- Local embedding models (large; download via scripts/download_model.py) ---
+models/
+
+Header_Mapping_filled.xlsx
+./Sample SOVs 1
+./docs

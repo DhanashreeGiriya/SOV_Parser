@@ -11,6 +11,13 @@ import re
 
 from header_mapping.ai_refine import refine_mappings_with_ai
 from header_mapping.aliases import ALIAS_MAP
+from header_mapping.embeddings import (
+    EMBED_COUNTRY_MIN_COS,
+    EMBED_MIN_COS,
+    EMBED_OWNERSHIP_MARGIN,
+    _compute_embedding_confidence,
+    get_embedder,
+)
 from header_mapping.models import ColumnMapping
 from header_mapping.patterns import _COUNTRY_NAMES, _RE_CITY, _RE_COORD, _RE_COUNTY, _RE_CURRENCY, _RE_ISO2, _RE_LARGE_NUM, _RE_STORIES, _RE_STREET_NUM, _RE_STREET_WORD, _RE_YEAR, _RE_ZIP5, _RE_ZIP_PARTIAL, _US_STATES, _sample_values, _value_pattern_score
 from header_mapping.schema import TARGET_SCHEMA_AIR, TARGET_SCHEMA_RMS
@@ -268,11 +275,70 @@ def map_headers(
             for c in matched_cols:
                 claimed[c] = out_col
             continue
-        # ── Pass A (fuzzy): Reference dictionary fuzzy match ─────────────────
+        # ── Pass A (embedding): Reference dictionary semantic match ──────────
+        # Embeddings replace the lexical fuzzy score against the alias phrases.
+        # An ownership guard stops an earlier schema field from greedily
+        # claiming a header that clearly belongs to a later field. The old
+        # fuzzywuzzy path is retained below as a fallback (embeddings off /
+        # low similarity). Only this reference-dictionary "fuzzy" pass — the
+        # one that can reach the 82 auto-accept threshold and land directly in
+        # output without AI review — is affected; Pass B is left unchanged.
+        _embedder = get_embedder()
+        if _embedder is not None:
+            best_raw, best_cos, best_alias = "", 0.0, ""
+            for raw_h, norm_h in norm_headers.items():
+                if raw_h in claimed:
+                    continue
+                cos, alias_phrase = _embedder.best_alias(norm_h, out_col)
+                if cos < EMBED_MIN_COS:
+                    continue
+                # Ownership guard: skip headers that clearly belong elsewhere.
+                own_t, own_c, _own_p = _embedder.best_target(norm_h)
+                if own_t != out_col and (own_c - cos) > EMBED_OWNERSHIP_MARGIN:
+                    continue
+                if cos > best_cos:
+                    best_cos, best_raw, best_alias = cos, raw_h, alias_phrase
+
+            if out_col in ("CountryISO", "CountryISOA2") and best_cos < EMBED_COUNTRY_MIN_COS:
+                best_cos, best_raw = 0.0, ""
+
+            if best_raw and best_cos >= EMBED_MIN_COS:
+                base_conf = _compute_embedding_confidence(best_cos)
+                vp_bonus = 0.0
+                if df is not None:
+                    vals = _sample_values(df, best_raw)
+                    vp_bonus = _value_pattern_score(out_col, vals)
+                final_conf = min(100, int(base_conf + vp_bonus * 100))
+                results.append(ColumnMapping(
+                    output_col=out_col, method=method, source_cols=[best_raw],
+                    match_type="embedding_match", confidence=final_conf, flag="",
+                    notes=f"Semantic embedding similarity (cosine={best_cos:.3f})",
+                    default_value=default,
+                    fuzzy_suggestion=best_raw,
+                    fuzzy_confidence=int(round(best_cos * 100)),
+                    embedding_score=best_cos,
+                    value_pattern_bonus=vp_bonus,
+                    final_decision_basis=(
+                        f"Semantic embedding match: '{best_raw}' means the same as "
+                        f"'{best_alias}' (similarity {best_cos:.2f})"
+                        + (f" · value pattern confirms (+{vp_bonus*100:.0f}%)" if vp_bonus > 0 else "")
+                    ),
+                ))
+                claimed[best_raw] = out_col
+                continue
+
+        # ── Pass A (fuzzy fallback): Reference dictionary fuzzy match ────────
         best_raw, best_score, best_alias = "", 0, ""
         for raw_h, norm_h in norm_headers.items():
             if raw_h in claimed:
                 continue
+            # Reuse the ownership guard so the fuzzy fallback can't re-introduce
+            # the greedy theft that embeddings just prevented.
+            if _embedder is not None:
+                cos, _ap = _embedder.best_alias(norm_h, out_col)
+                own_t, own_c, _own_p = _embedder.best_target(norm_h)
+                if own_t != out_col and (own_c - cos) > EMBED_OWNERSHIP_MARGIN:
+                    continue
             for alias_norm, alias_target in norm_alias.items():
                 if alias_target != out_col:
                     continue

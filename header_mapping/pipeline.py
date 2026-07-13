@@ -20,10 +20,10 @@ def run_header_mapping(
     output_dir=".",
     report_name="sov_header_mapping_report",
     max_scan_rows: int = 25,
-    target_system: str = "AIR",
+    target_system: str = "AIR", # AIR harcoding in two places?
     header_row_override=None,
     progress_callback=None,
-    template_name: str = "",          # ← NEW: used to load template-specific feedback
+    template_name: str = "",          
 ) -> dict:
     sov_file = Path(sov_file)
     output_dir = Path(output_dir)
@@ -71,22 +71,22 @@ def run_header_mapping(
             stored_srcs = rule.get("source_cols", [rule.get("source_col", "?")])
             print(f"  Rule [{norm_key}]: {rule['output_col']} <- {stored_srcs}")
             for stored_src in stored_srcs:
-                print(f"    stored repr : {repr(stored_src)}")
-                print(f"    stored norm : {repr(_normalise(stored_src))}")
+                print(f"stored repr : {repr(stored_src)}")
+                print(f"stored norm : {repr(_normalise(stored_src))}")
                 found_exact  = [h for h in raw_headers if h == stored_src]
                 found_normed = [h for h in raw_headers if _normalise(h) == _normalise(stored_src)]
                 if found_exact:
-                    print(f"    EXACT match : {found_exact}")
+                    print(f"EXACT match : {found_exact}")
                 elif found_normed:
-                    print(f"    NORM  match : {found_normed}")
+                    print(f"NORM  match : {found_normed}")
                 else:
-                    print(f"    NO MATCH — closest raw headers:")
+                    print(f"NO MATCH — closest raw headers:")
                     from fuzzywuzzy import fuzz as _fz
                     near = sorted(raw_headers,
                                   key=lambda h: _fz.token_set_ratio(_normalise(h), _normalise(stored_src)),
                                   reverse=True)[:3]
                     for h in near:
-                        print(f"      {repr(h)}  (score={_fz.token_set_ratio(_normalise(h), _normalise(stored_src))})")
+                        print(f"{repr(h)}  (score={_fz.token_set_ratio(_normalise(h), _normalise(stored_src))})")
         print("=== [DEBUG] RAW HEADERS ===")
         for h in raw_headers:
             print(f"  {repr(h)}")
@@ -134,6 +134,7 @@ def run_header_mapping(
         target_system=sys_label,
     )
 
+    print(mappings)
     return {
         "header_row": header_row,
         "raw_headers": raw_headers,

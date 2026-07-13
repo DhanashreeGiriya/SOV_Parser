@@ -1,21 +1,6 @@
-"""
-pipeline
-=================
-Backward-compatible facade for the old monolithic ``sov_header_mapping``
-module. The UI layer (``ui.*``) was written against a single
-``sov`` module object exposing everything it needed as attributes, e.g.
-``sov.run_header_mapping(...)``, ``sov.LockedSchema``, ``sov.fuzz``.
-
-Rather than rewriting every one of those call sites, this facade
-re-exports the handful of names the UI actually touches via the ``sov.``
-namespace, now sourced from their real modular homes in
-``header_mapping/`` and ``row_processing/``. Everything else in the
-pipeline should be imported directly from its owning module.
-"""
-
 from __future__ import annotations
 
-from fuzzywuzzy import fuzz  # type: ignore  # re-exported as sov.fuzz
+from fuzzywuzzy import fuzz  # re-exported as sov.fuzz
 
 from header_mapping.rms_crosswalk import (
     AIR_TO_RMS_CONSTRUCTION,

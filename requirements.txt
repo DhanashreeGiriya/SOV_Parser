@@ -3,3 +3,7 @@ pandas
 openpyxl
 fuzzywuzzy
 python-Levenshtein
+# Local semantic header matching (BAAI/bge-large-en-v1.5 via sentence-transformers).
+# CPU-only is fine. After install, fetch the model: python scripts/download_model.py
+sentence-transformers>=2.6
+huggingface-hub>=0.20

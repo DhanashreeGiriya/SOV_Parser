@@ -24,6 +24,8 @@ class ColumnMapping:
     ai_agreement: bool = False
     final_decision_basis: str = ""
     value_pattern_bonus: float = 0.0
+    # ── embedding-match provenance (semantic similarity via local BGE model) ──
+    embedding_score: float = 0.0
     # ── NEW: feedback provenance ──────────────────────────────────────────
     feedback_matched: bool = False
     feedback_reason: str = ""
