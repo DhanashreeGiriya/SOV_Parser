@@ -7,3 +7,4 @@ python-Levenshtein
 # CPU-only is fine. After install, fetch the model: python scripts/download_model.py
 sentence-transformers>=2.6
 huggingface-hub>=0.20
+torchvision
